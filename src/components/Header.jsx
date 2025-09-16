@@ -3,7 +3,7 @@ import { AppBar, Toolbar, IconButton, Badge, InputBase, Box } from "@mui/materia
 import { ShoppingCart, AccountCircle, Search } from "@mui/icons-material";
 import { styled, alpha } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import logo from "../images/logo.jpg"; // صورة اللوجو
+import logo from "../images/logo.pg"; // صورة اللوجو
 
 // صندوق البحث
 const SearchBox = styled("div")(({ theme }) => ({
