@@ -4,12 +4,12 @@ import {
   Toolbar,
   IconButton,
   Badge,
-  InputBase,
   Box,
 } from "@mui/material";
-import { ShoppingCart, AccountCircle, Search } from "@mui/icons-material";
+import { ShoppingCart, AccountCircle } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import logo from "../images/logo.jpg";
+import SearchBar from "./SearchBar";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -40,25 +40,12 @@ const Header = () => {
           onClick={() => navigate("/")}
         />
 
-        {/* Search Box */}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            bgcolor: "#f5f5f5",
-            borderRadius: 2,
-            px: 1,
-            mx: 3,
-            flexGrow: 1,
-            maxWidth: 400,
-          }}
-        >
-          <Search sx={{ color: "gray", mr: 1 }} />
-          <InputBase
-            fullWidth
-            placeholder="Search for products..."
-            sx={{ fontSize: 14 }}
-            inputProps={{ "aria-label": "search" }}
+        {/* Search Bar */}
+        <Box sx={{ mx: 3, flexGrow: 1, maxWidth: 400 }}>
+          <SearchBar
+            onProductSelect={(product) => {
+              navigate(`/products/${product.id}`);
+            }}
           />
         </Box>
 
@@ -82,4 +69,3 @@ const Header = () => {
 };
 
 export default Header;
-

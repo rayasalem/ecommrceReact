@@ -5,13 +5,13 @@ const Newsletter = () => {
   return (
     <Box sx={{ bgcolor: "#f5f5f5", py: 5, textAlign: "center" }}>
       <Typography variant="h5" sx={{ mb: 2, fontWeight: 700 }}>
-        اشترك في النشرة البريدية
+        Subscribe to Our Newsletter
       </Typography>
-      <Typography sx={{ mb: 3 }}>لا تفوت أي عروض جديدة!</Typography>
+      <Typography sx={{ mb: 3 }}>Don't miss out on our latest deals!</Typography>
       <Box sx={{ display: "flex", justifyContent: "center", gap: 2, flexWrap: "wrap" }}>
-        <TextField placeholder="أدخل بريدك الإلكتروني" variant="outlined" />
+        <TextField placeholder="Enter your email address" variant="outlined" />
         <Button variant="contained" color="secondary">
-          اشترك
+          Subscribe
         </Button>
       </Box>
     </Box>

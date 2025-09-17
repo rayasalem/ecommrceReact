@@ -5,10 +5,10 @@ const Footer = () => {
   return (
     <Box sx={{ bgcolor: "#333333", color: "#ffffff", py: 4, mt: 4 }}>
       <Typography variant="h6" align="center" gutterBottom>
-        MyShop
+        EngStore
       </Typography>
       <Typography variant="body2" align="center">
-        &copy; 2025 MyShop. All rights reserved.
+        &copy; 2025 EngStore. All rights reserved.
       </Typography>
       <Box sx={{ display: "flex", justifyContent: "center", mt: 1, gap: 2 }}>
         <Link href="#" color="inherit">Facebook</Link>
