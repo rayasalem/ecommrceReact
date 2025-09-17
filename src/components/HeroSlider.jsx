@@ -1,21 +1,20 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom"; // استيراد useNavigate
-import hero from "../images/hero.jpg"; // استيراد الصورة المحلية
+import { useNavigate } from "react-router-dom";
+import hero from "../images/hero.jpg";
 
 const HeroSlider = () => {
-  const navigate = useNavigate(); // لإنشاء التنقل
+  const navigate = useNavigate();
 
   return (
     <Box sx={{ position: "relative", width: "100%", height: 500, mt: 2 }}>
-      {/* الصورة */}
-      <img
+      <Box
+        component="img"
         src={hero}
-        alt="أفضل العروض"
-        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        alt="Best Deals"
+        sx={{ width: "100%", height: "100%", objectFit: "cover" }}
       />
 
-      {/* نص على الصورة */}
       <Box
         sx={{
           position: "absolute",
@@ -29,18 +28,18 @@ const HeroSlider = () => {
           borderRadius: 2,
         }}
       >
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 1 }}>
-          أفضل العروض لدينا
+        <Typography variant="h3" fontWeight={700} mb={1}>
+          Best Deals
         </Typography>
-        <Typography variant="h6" sx={{ mb: 2 }}>
-          تسوق الآن واستمتع بأفضل المنتجات
+        <Typography variant="h6" mb={2}>
+          Shop now and enjoy the best products
         </Typography>
         <Button
           variant="contained"
           color="secondary"
-          onClick={() => navigate("/products")} // يذهب لصفحة المنتجات
+          onClick={() => navigate("/products")}
         >
-          تسوق الآن
+          Shop Now
         </Button>
       </Box>
     </Box>
