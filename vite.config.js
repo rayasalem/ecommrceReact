@@ -3,5 +3,5 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react],
-  base: "/ecommrceReact/", // اسم المستودع على GitHub
+  base: "/ecommrceReact/", // اسم الريبو على GitHub بالضبط
 });

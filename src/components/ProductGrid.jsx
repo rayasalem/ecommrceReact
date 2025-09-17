@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import ProductCard from "./ProductCard";
+import React from "react";
 
 const ProductsGrid = ({ products }) => {
   return (
