@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Badge,
-  Box,
-} from "@mui/material";
+import { AppBar, Toolbar, IconButton, Badge, Box } from "@mui/material";
 import { ShoppingCart, AccountCircle } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import logo from "../images/logo.jpg";
@@ -15,23 +9,9 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <AppBar
-      position="sticky"
-      sx={{
-        bgcolor: "#fff",
-        color: "#000",
-        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-      }}
-    >
-      <Toolbar
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          px: { xs: 2, md: 4 },
-        }}
-      >
-        {/* Logo - click to navigate home */}
+    <AppBar position="sticky" sx={{ bgcolor: "#fff", color: "#000" }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between", px: 2 }}>
+        {/* Logo */}
         <Box
           component="img"
           src={logo}
@@ -40,26 +20,19 @@ const Header = () => {
           onClick={() => navigate("/")}
         />
 
-        {/* Search Bar */}
-        <Box sx={{ mx: 3, flexGrow: 1, maxWidth: 400 }}>
-          <SearchBar
-            onProductSelect={(product) => {
-              navigate(`/products/${product.id}`);
-            }}
-          />
+        {/* Search */}
+        <Box sx={{ flexGrow: 1, mx: 2, maxWidth: 400 }}>
+          <SearchBar onProductSelect={(product) => navigate(`/products/${product.id}`)} />
         </Box>
 
-        {/* Icons: Cart & Account */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          {/* Cart with badge */}
-          <IconButton color="inherit">
+        {/* Icons */}
+        <Box sx={{ display: "flex", gap: 1 }}>
+          <IconButton>
             <Badge badgeContent={4} color="error">
               <ShoppingCart />
             </Badge>
           </IconButton>
-
-          {/* Account icon */}
-          <IconButton color="inherit">
+          <IconButton>
             <AccountCircle />
           </IconButton>
         </Box>

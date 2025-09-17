@@ -8,37 +8,29 @@ const SearchBar = ({ onProductSelect }) => {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const data = await getAllProducts();
-      setProducts(data);
-    };
-    fetchProducts();
+    getAllProducts().then((data) => setProducts(data));
   }, []);
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      if (query.trim() === "") {
-        setResults([]);
-        return;
-      }
+    const timer = setTimeout(() => {
+      if (!query.trim()) return setResults([]);
       const filtered = products.filter((p) =>
         p.title.toLowerCase().includes(query.toLowerCase())
       );
       setResults(filtered);
-    }, 500); // debounce 500ms
+    }, 500);
 
-    return () => clearTimeout(handler);
+    return () => clearTimeout(timer);
   }, [query, products]);
 
   return (
     <div style={{ position: "relative" }}>
       <TextField
         fullWidth
+        size="small"
         placeholder="Search for products..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        variant="outlined"
-        size="small"
       />
       {results.length > 0 && (
         <Paper
@@ -47,22 +39,22 @@ const SearchBar = ({ onProductSelect }) => {
             top: "100%",
             left: 0,
             right: 0,
-            zIndex: 10,
             maxHeight: 300,
             overflowY: "auto",
+            zIndex: 10,
           }}
         >
           <List>
-            {results.map((product) => (
-              <ListItem key={product.id} disablePadding>
+            {results.map((p) => (
+              <ListItem key={p.id} disablePadding>
                 <ListItemButton
                   onClick={() => {
-                    onProductSelect(product);
+                    onProductSelect(p);
                     setQuery("");
                     setResults([]);
                   }}
                 >
-                  <ListItemText primary={product.title} />
+                  <ListItemText primary={p.title} />
                 </ListItemButton>
               </ListItem>
             ))}
