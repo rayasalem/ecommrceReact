@@ -8,7 +8,6 @@ const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const location = useLocation();
 
-  // قراءة query param
   const queryParams = new URLSearchParams(location.search);
   const categoryId = queryParams.get("category");
 
@@ -16,13 +15,12 @@ const ProductsPage = () => {
     const fetchProducts = async () => {
       const data = await getAllProducts();
       if (categoryId) {
-        // فلترة المنتجات حسب القسم
         const filtered = data.filter(
           (product) => product.category?.id === parseInt(categoryId)
         );
         setProducts(filtered);
       } else {
-        setProducts(data); // كل المنتجات
+        setProducts(data);
       }
     };
     fetchProducts();
@@ -31,7 +29,7 @@ const ProductsPage = () => {
   return (
     <Container sx={{ py: 5 }}>
       <Typography variant="h4" sx={{ mb: 4, fontWeight: 700 }}>
-        {categoryId ? `منتجات القسم` : "كل المنتجات"}
+        {categoryId ? "Category Products" : "All Products"}
       </Typography>
       <ProductsGrid products={products} />
     </Container>

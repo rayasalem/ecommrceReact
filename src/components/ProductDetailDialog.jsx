@@ -9,8 +9,8 @@ const ProductDetailDialog = ({ open, onClose, product }) => {
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogTitle sx={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600 }}>
-        {product.title || "منتج بدون عنوان"}
+      <DialogTitle sx={{ fontWeight: 600 }}>
+        {product.title || "No Title"}
       </DialogTitle>
       <DialogContent>
         {imageUrl && (
@@ -23,7 +23,7 @@ const ProductDetailDialog = ({ open, onClose, product }) => {
           />
         )}
         <Typography variant="body1" sx={{ mb: 2 }}>
-          {product.description || "لا يوجد وصف."}
+          {product.description || "No Description"}
         </Typography>
         <Typography variant="h6" color="primary" sx={{ fontWeight: 700, mb: 2 }}>
           ${product.price || "0"}
@@ -33,9 +33,9 @@ const ProductDetailDialog = ({ open, onClose, product }) => {
           color="secondary"
           startIcon={<ShoppingCartIcon />}
           fullWidth
-          sx={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600 }}
+          sx={{ fontWeight: 600 }}
         >
-          إضافة للسلة
+          Add to Cart
         </Button>
       </DialogContent>
     </Dialog>

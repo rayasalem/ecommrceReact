@@ -6,7 +6,7 @@ import { getAllProducts } from "../api/Product";
 
 const FeaturedProducts = ({ limit = 3 }) => {
   const [products, setProducts] = useState([]);
-  const navigate = useNavigate(); // الآن صحيح لأنه داخل Router
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -18,19 +18,18 @@ const FeaturedProducts = ({ limit = 3 }) => {
 
   return (
     <Container sx={{ py: 5 }}>
-      <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
-        منتجات مميزة
+      <Typography 
+        variant="h5" 
+        sx={{ mb: 3, fontWeight: 700, textAlign: "center", color: "#9c27b0" }}
+      >
+        Featured Products
       </Typography>
 
       <ProductsGrid products={products} />
 
       <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={() => navigate("/products")}
-        >
-          عرض كل المنتجات
+        <Button variant="contained" color="secondary" onClick={() => navigate("/products")}>
+          View All Products
         </Button>
       </Box>
     </Container>

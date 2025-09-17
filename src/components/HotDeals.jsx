@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Box, Container, Typography, Button, Grid } from "@mui/material";
 import ProductsGrid from "./ProductGrid";
 import { getAllProducts } from "../api/Product";
+import { useNavigate } from "react-router-dom";
 
 const HotDeals = ({ limit = 3 }) => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
       const data = await getAllProducts();
-      setProducts(data.slice(12, 12 + limit)); // أخذ 3 منتجات فقط
+      setProducts(data.slice(12, 12 + limit));
     };
     fetchProducts();
   }, [limit]);
@@ -17,7 +19,6 @@ const HotDeals = ({ limit = 3 }) => {
   return (
     <Box sx={{ py: 8, bgcolor: "#f9f9f9" }}>
       <Container>
-        {/* عنوان القسم */}
         <Typography
           variant="h4"
           sx={{
@@ -27,27 +28,25 @@ const HotDeals = ({ limit = 3 }) => {
             color: "#d32f2f",
           }}
         >
-          عروض سريعة 🔥
+          Hot Deals 🔥
         </Typography>
 
-        {/* شبكة المنتجات 3 أعمدة */}
         <Grid container spacing={3}>
           {products.map((product) => (
-            <Grid item xs={12} sm={4} key={product.id}> {/* 3 منتجات في السطر */}
-              <ProductsGrid products={[product]} /> {/* تمرير منتج واحد لكل Grid */}
+            <Grid item xs={12} sm={4} key={product.id}>
+              <ProductsGrid products={[product]} />
             </Grid>
           ))}
         </Grid>
 
-        {/* زر لعرض كل العروض */}
         <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
           <Button
             variant="contained"
             color="secondary"
             sx={{ px: 5, py: 1.5, fontWeight: 600 }}
-            onClick={() => window.location.href = "/products"}
+            onClick={() => navigate("/products")}
           >
-            عرض كل العروض
+            View All Deals
           </Button>
         </Box>
       </Container>

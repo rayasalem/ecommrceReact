@@ -3,7 +3,7 @@ import { Box, Container, Typography, Button, Card, CardMedia, CardContent } from
 import { getAllCategories } from "../api/Product"; 
 import { useNavigate } from "react-router-dom";
 
-const CategorySection = () => {
+const CategoriesPage = () => {
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
@@ -11,9 +11,13 @@ const CategorySection = () => {
     const fetchCategories = async () => {
       try {
         const data = await getAllCategories();
-        const validCategories = data
-          .filter(cat => cat.image && (cat.image.startsWith("http") || cat.image.startsWith("https")))
-          .slice(0, 3);
+        const validCategories = data.filter(
+          cat =>
+            cat.image && 
+            cat.image.startsWith("http") &&
+            cat.name && 
+            cat.name.trim() !== ""
+        );
         setCategories(validCategories);
       } catch (error) {
         console.error(error);
@@ -29,22 +33,22 @@ const CategorySection = () => {
           variant="h4"
           sx={{ mb: 4, fontWeight: 700, textAlign: "center", color: "#9c27b0" }}
         >
-          Our Categories
+          All Categories
         </Typography>
 
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, justifyContent: "center" }}>
           {categories.map((category) => (
             <Card
               key={category.id}
               sx={{
-                flex: "0 0 32%",
+                flex: "0 0 30%",
                 cursor: "pointer",
                 "&:hover": { transform: "scale(1.05)", boxShadow: 6 },
                 transition: "0.3s",
                 display: "flex",
                 flexDirection: "column",
               }}
-              onClick={() => navigate(`/categories/${category.id}`)}
+              onClick={() => navigate(`/products?category=${category.id}`)}
             >
               <CardMedia
                 component="img"
@@ -66,9 +70,9 @@ const CategorySection = () => {
             variant="contained"
             color="secondary"
             sx={{ px: 5, py: 1.5, fontWeight: 600 }}
-            onClick={() => navigate("/categories")}
+            onClick={() => navigate("/")}
           >
-            View All Categories
+            Back to Home
           </Button>
         </Box>
       </Container>
@@ -76,4 +80,4 @@ const CategorySection = () => {
   );
 };
 
-export default CategorySection;
+export default CategoriesPage;
