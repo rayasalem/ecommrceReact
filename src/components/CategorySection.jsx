@@ -51,7 +51,7 @@ const CategorySection = () => {
                 display: "flex",
                 flexDirection: "column",
               }}
-              onClick={() => navigate(`/categories/${category.id}`)}
+              onClick={() => navigate(`/products?category=${category.id}`)}
             >
               <CardMedia
                 component="img"
