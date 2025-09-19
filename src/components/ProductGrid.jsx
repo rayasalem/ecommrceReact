@@ -1,16 +1,23 @@
-import { Grid } from "@mui/material";
-import ProductCard from "./ProductCard";
 import React from "react";
+import { Box } from "@mui/material";
+import ItemCard from "./ItemCard";
 
-const ProductsGrid = ({ products }) => {
+const ProductsGrid = ({ items = [], type="product "}) => {
   return (
-    <Grid container spacing={3}>
-      {products.map((product) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-          <ProductCard product={product} />
-        </Grid>
+    <Box
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 3,
+        justifyContent: "center",
+      }}
+    >
+      {items.map((item) => (
+        <Box key={item.id} sx={{ flex: "1 1 250px", maxWidth: 350 }}>
+          <ItemCard item={item} type={type} />
+        </Box>
       ))}
-    </Grid>
+    </Box>
   );
 };
 

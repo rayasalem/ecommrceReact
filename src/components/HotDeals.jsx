@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Container, Typography, Button, Grid } from "@mui/material";
+import { Box, Container, Typography, Button } from "@mui/material";
 import ProductsGrid from "./ProductGrid";
 import { getAllProducts } from "../api/Product";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ const HotDeals = ({ limit = 3 }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       const data = await getAllProducts();
-      setProducts(data.slice(12, 12 + limit));
+      setProducts(data.slice(2, 2 + limit));
     };
     fetchProducts();
   }, [limit]);
@@ -31,13 +31,7 @@ const HotDeals = ({ limit = 3 }) => {
           Hot Deals 🔥
         </Typography>
 
-        <Grid container spacing={3}>
-          {products.map((product) => (
-            <Grid item xs={12} sm={4} key={product.id}>
-              <ProductsGrid products={[product]} />
-            </Grid>
-          ))}
-        </Grid>
+        <ProductsGrid items={products} type="product" />
 
         <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
           <Button

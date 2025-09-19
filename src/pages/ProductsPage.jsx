@@ -16,7 +16,7 @@ const ProductsPage = () => {
       const data = await getAllProducts();
       if (categoryId) {
         const filtered = data.filter(
-          (product) => product.category?.id === parseInt(categoryId)
+          (product) => product.category?.id === Number(categoryId)
         );
         setProducts(filtered);
       } else {
@@ -28,10 +28,11 @@ const ProductsPage = () => {
 
   return (
     <Container sx={{ py: 5 }}>
-      <Typography variant="h4" sx={{ mb: 4, fontWeight: 700 }}>
+      <Typography variant="h4" sx={{ mb: 4, fontWeight: 700, textAlign: "center" }}>
         {categoryId ? "Category Products" : "All Products"}
       </Typography>
-      <ProductsGrid products={products} />
+
+      <ProductsGrid items={products} type="product" />
     </Container>
   );
 };

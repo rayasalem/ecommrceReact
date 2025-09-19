@@ -36,7 +36,7 @@ const CartPage = () => {
           Your cart is empty
         </Typography>
         <Button variant="contained" color="secondary" href="/">
-          Go to Shop
+          Go to Home
         </Button>
       </Container>
     );

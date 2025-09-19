@@ -10,9 +10,13 @@ import CategoryDetailsPage from "./pages/CategoryProductsPage"
 import LoginPage from "./pages/LoginIN";
 import CartPage from "./pages/Cart Page";
 import SignupPage from "./pages/SignUp";
+import { CartProvider } from "./context/CartContext";
+import CategoryProductsPage from "./pages/CategoryProductsPage";
 function App() {
   return (
     <>
+        <CartProvider>
+
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -22,10 +26,13 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cart" element={<CartPage />} />
                 <Route path="/signup" element={<SignupPage />} />
+<Route path="/categories/:id" element={<CategoryProductsPage/>} />
 
 
       </Routes>
       <Footer />
+          </CartProvider>
+
     </>
   );
 }
