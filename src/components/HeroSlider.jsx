@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import hero from "../images/hero.jpg";
+import hero2 from "../images/hero2.png";
 
 const HeroSlider = () => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const HeroSlider = () => {
     <Box sx={{ position: "relative", width: "100%", height: 500, mt: 2 }}>
       <Box
         component="img"
-        src={hero}
+        src={hero2}
         alt="Best Deals"
         sx={{ width: "100%", height: "100%", objectFit: "cover" }}
       />

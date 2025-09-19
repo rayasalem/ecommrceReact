@@ -32,12 +32,19 @@ const CategorySection = () => {
           Our Categories
         </Typography>
 
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 3,
+            justifyContent: "center",
+          }}
+        >
           {categories.map((category) => (
             <Card
               key={category.id}
               sx={{
-                flex: "0 0 32%",
+                width: { xs: "100%", sm: "48%", md: "30%" },
                 cursor: "pointer",
                 "&:hover": { transform: "scale(1.05)", boxShadow: 6 },
                 transition: "0.3s",

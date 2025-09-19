@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL: "https://api.escuelajs.co/api/v1",
 });
 
-// جلب كل المنتجات
+// جميع المنتجات
 export const getAllProducts = async () => {
   try {
     const response = await api.get("/products");
@@ -15,7 +15,7 @@ export const getAllProducts = async () => {
   }
 };
 
-// جلب منتج معين بالـ ID
+// منتج محدد حسب الـID
 export const getProductById = async (id) => {
   try {
     const response = await api.get(`/products/${id}`);
@@ -26,7 +26,7 @@ export const getProductById = async (id) => {
   }
 };
 
-// جلب كل التصنيفات
+// جميع التصنيفات
 export const getAllCategories = async () => {
   try {
     const response = await api.get("/categories");
@@ -34,5 +34,16 @@ export const getAllCategories = async () => {
   } catch (error) {
     console.error("Category API Error:", error);
     return [];
+  }
+};
+
+
+export const getCategoryById = async (id) => {
+  try {
+    const response = await api.get(`/categories/${id}`);
+    return response.data || null;
+  } catch (error) {
+    console.error("Category API Error:", error);
+    return null;
   }
 };
