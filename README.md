@@ -1,12 +1,30 @@
-# React + Vite
+# E-Commerce React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple e-commerce web application built with **React**, **React Router**, and **Material-UI (MUI)**. The app allows users to browse products, view product details, and explore categories.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- View all products
+- Filter products by category
+- View individual product details
+- Responsive design for mobile and desktop
+- Add products to cart (context API)
+- Navigation between pages (React Router)
+- Reusable components (`ProductGrid`, `ItemCard`)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Tech Stack
+
+- **React** (functional components & hooks)
+- **React Router DOM** (for routing)
+- **Material-UI (MUI)** (for UI components & styling)
+- **Axios** (for API calls)
+- **API**: [Fake E-Commerce API](https://api.escuelajs.co/)
+
+---
+
+## Project Structure
+
