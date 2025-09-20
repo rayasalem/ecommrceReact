@@ -5,18 +5,38 @@ import { useNavigate } from "react-router-dom";
 
 const ItemCard = ({ item, type }) => {
   const navigate = useNavigate();
-  const image = type === "product" ?
-   item.images?.[0] : item.image;
+  const image = type === "product" ? item.images?.[0] : item.image;
+
+  // دالة لإضافة المنتج إلى السلة
+  const handleAddToCart = (e) => {
+    e.stopPropagation(); // منع تشغيل التنقل عند الضغط على الزر
+
+    // 1. قراءة السلة الحالية من localStorage
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // 2. التحقق إذا كان المنتج موجود مسبقًا
+    const isExist = storedCart.some((cartItem) => cartItem.id === item.id);
+
+    if (!isExist) {
+      // 3. إضافة المنتج الجديد
+      const updatedCart = [...storedCart, item];
+
+      // 4. حفظ السلة الجديدة في localStorage
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+      alert(`${item.title} added to cart!`);
+    } else {
+      alert(`${item.title} is already in the cart`);
+    }
+  };
 
   const handleClick = () => {
-
-  if (type === "product") {
-    navigate(`/products/${item.id}`);
-  } else {
-    navigate(`/categories/${item.id}`);
-  }
-}
-
+    if (type === "product") {
+      navigate(`/products/${item.id}`);
+    } else {
+      navigate(`/categories/${item.id}`);
+    }
+  };
 
   return (
     <Card
@@ -29,7 +49,7 @@ const ItemCard = ({ item, type }) => {
         display: "flex",
         flexDirection: "column",
         "&:hover": { transform: "scale(1.03)", boxShadow: 4 },
-        transition: "0.3s"
+        transition: "0.3s",
       }}
       onClick={handleClick}
     >
@@ -46,6 +66,7 @@ const ItemCard = ({ item, type }) => {
         <Typography variant="h6" align="center" sx={{ fontWeight: 400, mb: 1 }}>
           {item.title || item.name || "No Title"}
         </Typography>
+
         {type === "product" && (
           <>
             <Typography variant="body2" color="text.secondary" sx={{ minHeight: 50 }}>
@@ -57,12 +78,14 @@ const ItemCard = ({ item, type }) => {
           </>
         )}
       </CardContent>
+
       {type === "product" && (
         <Button
           variant="contained"
           color="secondary"
           startIcon={<ShoppingCartIcon />}
           fullWidth
+          onClick={handleAddToCart} // ← ربط الزر بالدالة
         >
           Add to Cart
         </Button>
