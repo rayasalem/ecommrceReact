@@ -10,7 +10,6 @@ This is a simple e-commerce web application built with **React**, **React Router
 - Filter products by category
 - View individual product details
 - Responsive design for mobile and desktop
-- Add products to cart (context API)
 - Navigation between pages (React Router)
 - Reusable components (`ProductGrid`, `ItemCard`)
 
