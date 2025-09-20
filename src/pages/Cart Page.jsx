@@ -10,10 +10,11 @@ import {
   Button,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
-
+const navigate = useNavigate();
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
@@ -74,8 +75,9 @@ const CartPage = () => {
         <Typography variant="h6" sx={{ fontWeight: 700 }}>
           Total: ${totalPrice.toFixed(2)}
         </Typography>
-        <Button variant="contained" color="secondary">
-          Checkout
+        <Button variant="contained" color="secondary" onClick={() => navigate("/")}>
+
+          HomePage
         </Button>
       </Box>
     </Container>
