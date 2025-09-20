@@ -7,27 +7,12 @@ const ItemCard = ({ item, type }) => {
   const navigate = useNavigate();
   const image = type === "product" ? item.images?.[0] : item.image;
 
-  // دالة لإضافة المنتج إلى السلة
   const handleAddToCart = (e) => {
-    e.stopPropagation(); // منع تشغيل التنقل عند الضغط على الزر
-
-    // 1. قراءة السلة الحالية من localStorage
+    e.stopPropagation();
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    // 2. التحقق إذا كان المنتج موجود مسبقًا
-    const isExist = storedCart.some((cartItem) => cartItem.id === item.id);
-
-    if (!isExist) {
-      // 3. إضافة المنتج الجديد
-      const updatedCart = [...storedCart, item];
-
-      // 4. حفظ السلة الجديدة في localStorage
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-
-      alert(`${item.title} added to cart!`);
-    } else {
-      alert(`${item.title} is already in the cart`);
-    }
+    const updatedCart = [...storedCart, item];
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    alert("Product added to cart!");
   };
 
   const handleClick = () => {
@@ -40,17 +25,7 @@ const ItemCard = ({ item, type }) => {
 
   return (
     <Card
-      sx={{
-        maxWidth: 350,
-        width: "100%",
-        borderRadius: 3,
-        boxShadow: 1,
-        cursor: "pointer",
-        display: "flex",
-        flexDirection: "column",
-        "&:hover": { transform: "scale(1.03)", boxShadow: 4 },
-        transition: "0.3s",
-      }}
+      sx={{ maxWidth: 350, borderRadius: 3, boxShadow: 1, cursor: "pointer" }}
       onClick={handleClick}
     >
       {image && (
@@ -58,21 +33,21 @@ const ItemCard = ({ item, type }) => {
           component="img"
           height={200}
           image={image}
-          alt={item.title || item.name || "Item"}
-          sx={{ objectFit: "cover" }}
+          alt={item.title || item.name}
         />
       )}
-      <CardContent sx={{ flexGrow: 1, minHeight: 80 }}>
-        <Typography variant="h6" align="center" sx={{ fontWeight: 400, mb: 1 }}>
-          {item.title || item.name || "No Title"}
+
+      <CardContent>
+        <Typography variant="h6" align="center">
+          {item.title || item.name}
         </Typography>
 
         {type === "product" && (
           <>
-            <Typography variant="body2" color="text.secondary" sx={{ minHeight: 50 }}>
+            <Typography variant="body2" color="text.secondary">
               {item.description?.slice(0, 80) || "No Description"}...
             </Typography>
-            <Typography variant="h6" color="primary" sx={{ mt: 1 }}>
+            <Typography variant="h6" color="primary">
               ${item.price || "0"}
             </Typography>
           </>
@@ -85,7 +60,7 @@ const ItemCard = ({ item, type }) => {
           color="secondary"
           startIcon={<ShoppingCartIcon />}
           fullWidth
-          onClick={handleAddToCart} // ← ربط الزر بالدالة
+          onClick={handleAddToCart}
         >
           Add to Cart
         </Button>
